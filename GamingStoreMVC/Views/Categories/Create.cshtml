@@ -1,33 +1,42 @@
 ﻿@model GamingStoreMVC.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Adaugă Categorie";
 }
 
-<h1>Create</h1>
+<div class="container my-4">
+    <h1 class="text-white text-uppercase fw-bold mb-4">Adaugă Categorie</h1>
+    <hr style="border-color: #232d29;" />
 
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- ATENȚIE: enctype="multipart/form-data" este obligatoriu pentru upload de fișiere -->
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Nume Categorie</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImageFile" class="form-label">Încarcă Imagine Locală</label>
+                    <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-3 mt-4">
+                    <button type="submit" class="btn btn-neon">Creează</button>
+                    <a asp-action="Index" class="btn btn-secondary">Înapoi la listă</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

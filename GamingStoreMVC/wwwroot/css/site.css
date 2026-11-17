@@ -1,31 +1,206 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+﻿:root {
+    --bg-dark: #0b0f0e;
+    --accent-neon: #c4ff0e;
+    --text-light: #ffffff;
+    --text-muted: #d0d5d2; /* Culoare deschisă pentru vizibilitate maximă */
+    --card-bg: #121816;
+    --border-color: #232d29;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Segoe UI', system-ui, -apple-src, sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Navbar stilizat minimalist / tech */
+.navbar {
+    background-color: var(--bg-dark) !important;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.navbar-brand, .navbar-nav .nav-link {
+    color: var(--text-light) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: var(--accent-neon) !important;
+    }
+
+/* Footer personalizat tech */
+footer {
+    background-color: var(--bg-dark) !important;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted) !important;
+}
+
+    footer a {
+        color: var(--accent-neon) !important;
+        text-decoration: none;
+    }
+
+/* Butoane stil neon */
+.btn-neon {
+    background-color: var(--accent-neon);
+    color: #000000;
+    font-weight: 700;
+    border: none;
+    border-radius: 0;
+    padding: 10px 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease-in-out;
+}
+
+    .btn-neon:hover {
+        background-color: #b0e605;
+        box-shadow: 0 0 15px rgba(196, 255, 14, 0.4);
+        color: #000000;
+    }
+
+/* Carduri rectangulare tech cu text clar */
+.tech-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    padding: 30px;
+    transition: border-color 0.2s;
+}
+
+    .tech-card:hover {
+        border-color: var(--accent-neon);
+    }
+
+    .tech-card p, .tech-card span {
+        color: var(--text-muted) !important;
+    }
+
+/* Tabele și Formulare Bootstrap adaptate la tema întunecată */
+.table {
+    color: var(--text-light) !important;
+    border-color: var(--border-color);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    color: var(--text-light);
+    background-color: rgba(255, 255, 14, 0.02);
+}
+
+.form-control {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    border-radius: 0;
+}
+
+    .form-control:focus {
+        background-color: var(--card-bg);
+        border-color: var(--accent-neon);
+        color: var(--text-light);
+        box-shadow: 0 0 0 0.25rem rgba(196, 255, 14, 0.25);
+    }
+
+.form-label {
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* --- STILIZARE GENERALĂ PAGINI CRUD (CATEGORII & PRODUSE) --- */
+
+/* Titlurile paginilor (H1) */
+h1, h2, h3 {
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tabele în temă dark / tech */
+table.table {
+    background-color: #121816 !important;
+    color: #ffffff !important;
+    border: 1px solid #232d29 !important;
+}
+
+    table.table th {
+        background-color: #1a2622 !important;
+        color: #c4ff0e !important;
+        border-bottom: 2px solid #232d29 !important;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    table.table td {
+        color: #d0d5d2 !important;
+        border-color: #232d29 !important;
+        vertical-align: middle;
+    }
+
+table.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(255, 255, 255, 0.01) !important;
+    color: #d0d5d2 !important;
+}
+
+table.table-hover > tbody > tr:hover > * {
+    background-color: rgba(196, 255, 14, 0.05) !important;
+    color: #ffffff !important;
+}
+
+/* Link-uri de acțiune din tabele (Edit | Details | Delete) */
+table.table a {
+    color: #c4ff0e !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+    table.table a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
+
+/* Butonul de "Create New" sau acțiuni principale */
+a.btn-primary, button.btn-primary, .btn-success {
+    background-color: #c4ff0e !important;
+    color: #000000 !important;
+    font-weight: 700;
+    border: none !important;
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+}
+
+    a.btn-primary:hover, button.btn-primary:hover, .btn-success:hover {
+        background-color: #b0e605 !important;
+        box-shadow: 0 0 12px rgba(196, 255, 14, 0.4);
+        color: #000000 !important;
+    }
+
+/* Butoane secundare (Back to List, etc.) */
+.btn-secondary {
+    background-color: #1a2622 !important;
+    border: 1px solid #232d29 !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+    .btn-secondary:hover {
+        background-color: #232d29 !important;
+        border-color: #c4ff0e !important;
+        color: #c4ff0e !important;
+    }
+
+/* Carduri pentru formularele de Create / Edit / Details */
+form div, .card, .border {
+    border-color: #232d29 !important;
 }

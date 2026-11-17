@@ -1,34 +1,55 @@
 ﻿@model GamingStoreMVC.Models.Category
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editează Categorie";
 }
 
-<h1>Edit</h1>
+<div class="container my-4">
+    <h1 class="text-white text-uppercase fw-bold mb-4">Editează Categorie</h1>
+    <hr style="border-color: #232d29;" />
 
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ImageUrl" /> <!-- Păstrăm calea veche dacă nu se schimbă imaginea -->
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Nume Categorie</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Afișare imagine curentă dacă există -->
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Imagine Curentă</label>
+                        <div>
+                            <img src="@Model.ImageUrl" alt="Preview" style="max-height: 120px; border: 1px solid #232d29;" class="object-fit-cover" />
+                        </div>
+                    </div>
+                }
+
+                <div class="mb-3">
+                    <label asp-for="ImageFile" class="form-label">Schimbă Imaginea (Opțional)</label>
+                    <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-3 mt-4">
+                    <button type="submit" class="btn btn-neon">Salvează</button>
+                    <a asp-action="Index" class="btn btn-secondary">Înapoi la listă</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GamingStoreMVC.Models
 {
@@ -7,10 +7,15 @@ namespace GamingStoreMVC.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Numele categoriei este obligatoriu")]
+        [Required]
         [Display(Name = "Categorie")]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
-        public ICollection<Product>? Products { get; set; }
+        [Display(Name = "Imagine Categorie")]
+        public string? ImageUrl { get; set; } // Calea relativă salvată în baza de date (ex: /images/categories/nume.jpg)
+
+        [NotMapped]
+        [Display(Name = "Încarcă Imagine")]
+        public IFormFile? ImageFile { get; set; } // Fișierul selectat din calculator
     }
 }

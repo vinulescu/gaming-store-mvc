@@ -2,7 +2,73 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-5">
+    <!-- HERO SECTION -->
+    <div class="row align-items-center mb-5 py-5" style="border-bottom: 1px solid #232d29;">
+        <div class="col-lg-7">
+            <span class="badge rounded-0 mb-3 px-3 py-2" style="background-color: #c4ff0e; color: #000; font-weight: 700;">NEXT-GEN GAMING GEAR</span>
+            <h1 class="display-3 fw-bold text-uppercase mb-4" style="letter-spacing: -1px; line-height: 1.1;">
+                SECURE <br>WHAT BUILDS <br><span style="color: #c4ff0e;">TOMORROW</span>
+            </h1>
+            <p class="lead mb-4" style="color: #d0d5d2 !important;">
+                Advanced hardware, peripherals, and digital keys for an uncompromised high-performance setup.
+            </p>
+            <div class="d-flex gap-3">
+                <a asp-controller="Products" asp-action="Index" class="btn btn-neon">Get Started &rarr;</a>
+                <a href="#features" class="btn btn-outline-light rounded-0 px-4 py-3 text-uppercase fw-bold" style="border-color: #232d29; color: #fff;">Explore Store</a>
+            </div>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0">
+            <div class="tech-card p-4 text-center" style="background: linear-gradient(135deg, #121816 0%, #1a2622 100%);">
+                <h3 class="text-uppercase fw-bold mb-3 text-white">HARDWARE VAULT</h3>
+                <p class="small mb-4" style="color: #d0d5d2;">Top tier components tested for maximum throughput and zero latency.</p>
+                <div class="py-4" style="border: 1px dashed #c4ff0e; color: #c4ff0e; font-family: monospace;">
+                    [ SYSTEM STATUS: SECURE ]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3 COLUMNS FEATURE GRID -->
+    <div id="features" class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="tech-card h-100">
+                <span class="font-monospace" style="color: #c4ff0e;">01</span>
+                <h3 class="h4 text-uppercase fw-bold mt-2 mb-3 text-white">DATA SHIELD</h3>
+                <p class="mb-0" style="color: #d0d5d2;">Seamless encryption and secure account management for all digital purchases.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="tech-card h-100">
+                <span class="font-monospace" style="color: #c4ff0e;">02</span>
+                <h3 class="h4 text-uppercase fw-bold mt-2 mb-3 text-white">THREAT DEFENSE</h3>
+                <p class="mb-0" style="color: #d0d5d2;">Stay ahead of stock drops and price fluctuations with automated instant alerts.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="tech-card h-100">
+                <span class="font-monospace" style="color: #c4ff0e;">03</span>
+                <h3 class="h4 text-uppercase fw-bold mt-2 mb-3 text-white">CLOUD CONTROL</h3>
+                <p class="mb-0" style="color: #d0d5d2;">Total inventory visibility and lightning-fast digital library delivery.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS BANNER -->
+    <div class="tech-card p-5 my-5" style="background-color: #c4ff0e; color: #000;">
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <h2 class="display-4 fw-bold mb-0">10K+</h2>
+                <p class="text-uppercase fw-bold small mb-0">Gamers Trust Us</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="display-4 fw-bold mb-0">99.9%</h2>
+                <p class="text-uppercase fw-bold small mb-0">Uptime Guarantee</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="display-4 fw-bold mb-0">50+</h2>
+                <p class="text-uppercase fw-bold small mb-0">Global Brands</p>
+            </div>
+        </div>
+    </div>
 </div>

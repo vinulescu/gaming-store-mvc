@@ -1,35 +1,49 @@
 ﻿@model IEnumerable<GamingStoreMVC.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categorii";
 }
 
-<h1>Index</h1>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-white text-uppercase fw-bold m-0">Categorii Produse</h1>
+        <a asp-action="Create" class="btn btn-neon">+ Adaugă Categorie</a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="tech-card h-100 d-flex flex-column justify-content-between p-3" style="background-color: #121816; border: 1px solid #232d29;">
+                    <div>
+                        <!-- Imagine Categorie -->
+                        <div class="mb-3 position-relative" style="height: 180px; overflow: hidden; background-color: #1a2622; border: 1px solid #232d29;">
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="@item.ImageUrl" alt="@item.Name" class="w-100 h-100 object-fit-cover" style="object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center justify-content-center h-100 text-muted font-monospace small">
+                                    [ FĂRĂ IMAGINE ]
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Nume Categorie -->
+                        <h3 class="h5 text-white text-uppercase fw-bold mb-3">@item.Name</h3>
+                    </div>
+
+                    <!-- Butoane de Acțiune (Edit | Details | Delete) -->
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-top" style="border-color: #232d29 !important;">
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none me-2 fw-bold" style="color: #c4ff0e !important;">Editează</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none me-2 text-muted">Detalii</a>
+                        </div>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="text-decoration-none text-danger small">Șterge</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
