@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GamingStoreMVC.Data;
 
@@ -60,10 +60,17 @@ using (var scope = app.Services.CreateScope())
     }
 
     var adminEmail = "admin@magazin.ro";
-    if (await userManager.FindByEmailAsync(adminEmail) == null)
+    var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
+    if (adminUser == null)
     {
-        var adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
+        adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
         await userManager.CreateAsync(adminUser, "Admin123!");
+    }
+
+    // Ne asigurăm mereu că utilizatorul admin are rolul de Admin atribuit
+    if (!await userManager.IsInRoleAsync(adminUser, "Admin"))
+    {
         await userManager.AddToRoleAsync(adminUser, "Admin");
     }
 }

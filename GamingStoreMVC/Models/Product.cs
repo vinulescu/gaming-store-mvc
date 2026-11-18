@@ -11,30 +11,30 @@ namespace GamingStoreMVC.Models
         [Display(Name = "Nume Produs")]
         public string Name { get; set; } = string.Empty;
 
-        [Required]
+        // Opțional
         [Display(Name = "Descriere")]
-        public string Description { get; set; } = string.Empty;
+        public string? Description { get; set; }
 
-        [Required]
+        // Opțional (fără [Required])
         [Display(Name = "Specificații")]
-        public string Specifications { get; set; } = string.Empty;
+        public string? Specifications { get; set; }
 
-        [Required]
+        // Opțional
         [Column(TypeName = "decimal(18,2)")]
         [Display(Name = "Preț (RON)")]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
 
         [Required]
         [Display(Name = "Stoc")]
         public int Stock { get; set; }
 
-        [Required]
+        // Opțional
         [Display(Name = "Furnizor")]
-        public string Supplier { get; set; } = string.Empty;
+        public string? Supplier { get; set; }
 
-        [Required]
+        // Opțional
         [Display(Name = "Modalitate de livrare")]
-        public string DeliveryMethod { get; set; } = string.Empty;
+        public string? DeliveryMethod { get; set; }
 
         [Display(Name = "Categorie")]
         public int CategoryId { get; set; }

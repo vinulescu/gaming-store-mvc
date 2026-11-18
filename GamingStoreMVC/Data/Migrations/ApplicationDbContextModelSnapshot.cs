@@ -45,29 +45,25 @@ namespace GamingStoreMVC.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DeliveryMethod")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Specifications")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Stock")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Supplier")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -276,7 +272,7 @@ namespace GamingStoreMVC.Data.Migrations
             modelBuilder.Entity("GamingStoreMVC.Models.Product", b =>
                 {
                     b.HasOne("GamingStoreMVC.Models.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -333,11 +329,6 @@ namespace GamingStoreMVC.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("GamingStoreMVC.Models.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

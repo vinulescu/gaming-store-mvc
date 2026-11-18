@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using GamingStoreMVC.Data;
 using GamingStoreMVC.Models;
 
@@ -24,13 +25,15 @@ namespace GamingStoreMVC.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Categories
+        // GET: Categories (Oricine le poate vizualiza)
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Categories.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Categories/Details/5 (Oricine poate vedea detaliile)
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,14 +51,16 @@ namespace GamingStoreMVC.Controllers
             return View(category);
         }
 
-        // GET: Categories/Create
+        // GET: Categories/Create (Doar Admin)
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Categories/Create (Doar Admin)
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,ImageFile")] Category category)
         {
@@ -87,7 +92,8 @@ namespace GamingStoreMVC.Controllers
             return View(category);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Categories/Edit/5 (Doar Admin)
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,8 +109,9 @@ namespace GamingStoreMVC.Controllers
             return View(category);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Categories/Edit/5 (Doar Admin)
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ImageUrl,ImageFile")] Category category)
         {
@@ -134,7 +141,7 @@ namespace GamingStoreMVC.Controllers
                             await category.ImageFile.CopyToAsync(fileStream);
                         }
 
-                        // Opțional: poți șterge vechea imagine din folder dacă există
+                        // Ștergem vechea imagine din folder dacă există
                         if (!string.IsNullOrEmpty(category.ImageUrl))
                         {
                             string oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, category.ImageUrl.TrimStart('/'));
@@ -166,7 +173,8 @@ namespace GamingStoreMVC.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
+        // GET: Categories/Delete/5 (Doar Admin)
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -184,8 +192,9 @@ namespace GamingStoreMVC.Controllers
             return View(category);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Categories/Delete/5 (Doar Admin)
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

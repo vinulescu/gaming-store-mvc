@@ -7,7 +7,12 @@
 <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="text-white text-uppercase fw-bold m-0">Categorii Produse</h1>
-        <a asp-action="Create" class="btn btn-neon">+ Adaugă Categorie</a>
+
+        <!-- Doar Adminul poate vedea butonul de adăugare categorie nouă -->
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <a asp-action="Create" class="btn btn-neon">+ Adaugă Categorie</a>
+        }
     </div>
 
     <div class="row g-4">
@@ -34,13 +39,22 @@
                         <h3 class="h5 text-white text-uppercase fw-bold mb-3">@item.Name</h3>
                     </div>
 
-                    <!-- Butoane de Acțiune (Edit | Details | Delete) -->
+                    <!-- Butoane de Acțiune -->
                     <div class="d-flex justify-content-between align-items-center pt-3 border-top" style="border-color: #232d29 !important;">
                         <div>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none me-2 fw-bold" style="color: #c4ff0e !important;">Editează</a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none me-2 text-muted">Detalii</a>
+
+                            <!-- Doar Adminul poate vedea opțiunile de Edit și Delete -->
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none me-2 fw-bold" style="color: #c4ff0e !important;">Editează</a>
+                            }
                         </div>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="text-decoration-none text-danger small">Șterge</a>
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="text-decoration-none text-danger small">Șterge</a>
+                        }
                     </div>
                 </div>
             </div>
